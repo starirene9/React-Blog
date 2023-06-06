@@ -1,0 +1,62 @@
+//자주 쓰는 코드 함수화 시키기
+@mixin content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+
+  &:hover .remove {
+    display: block;
+  } // 상위 태그가 &에 들어감
+
+  .check-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid gray;
+    font-size: 24px;
+    margin-right: 20px;
+    cursor: pointer;
+
+    //컨텐츠 중앙에 모으기 공식처럼
+   @include content-center;
+
+    &.active {
+      border: 1px solid deepskyblue;
+      color: deepskyblue;
+    }
+  }
+
+  .text {
+    font-size: 21px;
+    //background: tomato;
+    color: #495057;
+    flex: 1;
+
+    &.finish {
+      color: #868e96;
+      text-decoration: line-through;
+
+    }
+  }
+
+  .remove {
+    //background: orange;
+    font-size: 28px;
+    cursor: pointer;
+    color: #f51b4f;
+
+    @include content-center;
+    //휴지통은 안보이게 하다가 li 에 hover하면 뜨게 하는걸로
+    display: none;
+
+    &:hover svg {
+      opacity: 0.6;
+    }
+  }
+}
