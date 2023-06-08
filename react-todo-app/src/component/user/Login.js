@@ -2,7 +2,7 @@ import React from 'react';
 
 const Login = () => {
     return (
-        <div style={{ marginTop : '200px'}}>
+        <div style={{ marginTop : '200px' , fontSize : '16px'}}>
             로그인 페이지 입니다.
         </div>
     );
