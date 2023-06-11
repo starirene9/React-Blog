@@ -6,7 +6,8 @@ import data from './data';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
 import contact from './contact';
 import Detail from './Detail';
-import {Carousel, Navbar} from './static';
+import axios from "axios";
+
 
 // import 해서 {}안에 여러개 쓰기 쌉가능
 // import {a, b} from './data.js'; // 경로는 ./부터 시작함
@@ -82,8 +83,8 @@ function App() {
                             <div className="row">
                                 { // {}에 데이터 배열을 가지고 있는 state info 배열에 map 을 돌리기
                                     info.map((a, i) => {
-                                            return (
-                                                <div className="col-md-4">
+                                            return ( // map 돌리때 항상 key={i} 넣어주기
+                                                <div key={i} className="col-md-4">
                                                     <img className="secondImg" src={info[i].src} alt={info[i].alt}
                                                          width="80%"/>
                                                     <h3>{info[i].title}</h3>
@@ -112,9 +113,23 @@ function App() {
                 <Route path="*" element={<div>없는 페이지 입니다.</div>}/>
                 {/* * : 오타 포함 모든 것 */}
             </Routes>
+            <button style={{background:'lightblue' ,borderRadius: '20px'}}
+            onClick={()=>{
+            axios.get('https://codingapple1.github.io/shop/data2.json')
+                .then((result)=>{
+                    console.log(result.data)
+                })
+                .catch(()=>{  // 예외처리 함
+                    console.log('실패했습니다')
+                })
+                // axios GET 요청은 axios.get('url') : 새로고침 없이 깔끔하게 서버에서 데이터 들고옴
+                // 서버 요청하는 방법 1. XMLHttpRequest 2. fetch() 3. axios
+                // 버튼 누르면 데이터 가져와서 html로 보여주기
+
+            }}>수업 더보기</button>
 
         </div>
-    );
+    )
 }
 
 //  컴포넌트 요소들
