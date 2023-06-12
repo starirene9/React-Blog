@@ -99,7 +99,7 @@ function App() {
                 }/>
 
                 {/* url 파라미터 문법 /:작명  */}
-                <Route path="/detail/:id" element={<div><Detail info={info}/></div>}/>
+                <Route path="/detail/:id" element={<div><Detail  info={info} /></div>}/>
                 <Route path="/contact" element={<div><Contact/></div>}/>
                 <Route path="/about" element={<div><About/></div>}>
 
@@ -118,6 +118,12 @@ function App() {
             axios.get('https://codingapple1.github.io/shop/data2.json')
                 .then((result)=>{
                     console.log(result.data)
+                //   info 에 가져온 데이터 추가 해주세요. 큰 array 안에 object가 들어가는 형태 .concat()쓰면 됨
+                //     console.log(info)
+                    // 불러온 정보 복사해서 뿌려주기~!!!!!
+                    let copy = [...info, ...result.data]; // 대괄호를 벗긴 {} 들이 들어가게 됨
+                    // console.log(copy);
+                    setInfo(copy);
                 })
                 .catch(()=>{  // 예외처리 함
                     console.log('실패했습니다')
@@ -126,8 +132,24 @@ function App() {
                 // 서버 요청하는 방법 1. XMLHttpRequest 2. fetch() 3. axios
                 // 버튼 누르면 데이터 가져와서 html로 보여주기
 
-            }}>수업 더보기</button>
+                // 서버로 데이터 전송하는 POST 요청 : 자료 전송
+                // axios.post('/BitnaUrl', {name : 'kim'})
 
+                // 동시에 AJAX 요청 여러개 날리기
+                // Promise.all([ axios.get('/url1'), axios.get('/url12')])
+                //     .then(()=>{
+                //         // 위의 두 개를 성공했을때 then 안의 코드를 실행시켜줌
+                //     })
+                //    JSON은 문자 취급을 받을 수 있음 이 라이브러리가 object를 String 으로 변환을 해줌
+
+                // fetch('')
+                //     .then(결과 => 결과.json())
+                //     .then(data => {})
+
+            }}>더보기</button>
+            {/* 버튼 2회 누를때 7,8,9번 상품 가져오려면? 버튼 누른 횟수 저장해놓기
+                버튼 3회 눌렀을때는 상품 더 없다고 알려주기
+                버튼 누르면 로딩중입니다 띄우기 */}
         </div>
     )
 }
