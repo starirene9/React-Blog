@@ -163,5 +163,5 @@ function TabContent({tab, info}) {
 
 export default Detail;
 // Props 사용시 컴포넌트를 계속 전달 받아야함
-// 1. Context API(리액트 기본문법)사용 => 성능 이유 때문에 잘 안쓰는 편임 
+// 1. Context API(리액트 기본문법)사용 => 성능 이유 때문에 잘 안쓰는 편임
 // 2. Redux와 같은 외부라이브러리 사용
