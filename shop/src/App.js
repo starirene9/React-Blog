@@ -199,3 +199,7 @@ function Contact() {
 
 
 export default App;
+
+// Single Page Application 단점 : 컴포넌트간 state공유 어려움
+// 부모 -> 자식 컴포넌트 : props 전송 가능
+// App> Detail > TabContent
